@@ -1,0 +1,182 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    color: #FFF;
+    background-color: #111;
+}
+
+body {
+    display: block;
+    box-sizing: border-box;
+    width: 100%;
+}
+
+.hss {
+    display: block;
+    box-sizing: border-box;
+    width: 100%;
+    height: 4px;
+}
+
+.vss {
+    display: block;
+    width: 4px;
+    height: 100%;
+}
+
+.hsm {
+    display: block;
+    box-sizing: border-box;
+    width: 100%;
+    height: 8px;
+}
+
+.vsm {
+    display: block;
+    width: 8px;
+    height: 100%;
+}
+
+.hsl {
+    display: block;
+    box-sizing: border-box;
+    width: 100%;
+    height: 12px;
+}
+
+.vsl {
+    display: block;
+    width: 12px;
+    height: 100%;
+}
+
+.hero-container {
+    display: block;
+    box-sizing: border-box;
+    justify-items: stretch;
+    width: 96px;
+    margin: auto auto;
+}
+
+.hero-logo {
+    display: block;
+    box-sizing: border-box;
+    margin: 0 auto;
+    width: 64px;
+    height: 64px;
+}
+
+.hero-label {
+    display: block;
+    width: 100%;
+    text-align: center;
+    font-size: 14pt;
+    font-weight: 700;
+}
+
+.login-container {
+    display: block;
+    box-sizing: border-box;
+    width: 96px;
+    margin: auto auto;
+}
+
+.login-logo {
+    display: block;
+    box-sizing: border-box;
+    margin: 0 auto;
+    width: 48px;
+    height: 48px;
+}
+
+.login-label {
+    display: block;
+    width: 100%;
+    text-align: center;
+    font-size: 12pt;
+    font-weight: 700;
+}
+
+.register-container {
+    display: block;
+    box-sizing: border-box;
+    width: 96px;
+    margin: auto auto;
+}
+
+.register-logo {
+    display: block;
+    box-sizing: border-box;
+    margin: 0 auto;
+    width: 48px;
+    height: 48px;
+}
+
+.register-label {
+    display: block;
+    width: 100%;
+    text-align: center;
+    font-size: 12pt;
+    font-weight: 700;
+}
+
+.button {
+    display: block;
+    width: 100%;
+    height: 24px;
+    border: none;
+    border-radius: 4px;
+    color: #FFF;
+    background-color: #50A0F0;
+    font-size: 8pt;
+    font-weight: 700;
+}
+
+.button:focus {
+    color: #EEE;
+    background-color: #4595E5;
+    outline-color: #70C0F0;
+    outline-width: 2px;
+}
+
+.button:hover {
+    color: #EEE;
+    background-color: #4595E5;
+}
+
+.button:active {
+    color: #CCC;
+    background-color: #3585D5;
+}
+
+.text-input {
+    display: block;
+    margin: auto;
+    padding-left: 4px;
+    max-width: 92px;
+    width: 100%;
+    height: 20px;
+    border: none;
+    border-radius: 4px;
+    background-color: #FFF;
+    font-weight: 700;
+}
+
+.text-input::placeholder {
+    color: #777;
+}
+
+.text-input:focus {
+    background-color: #FFF;
+    outline-color: #70C0F0;
+    outline-width: 2px;
+}
+
+.input-hint {
+    color: #fff;
+    font-size: 6pt;
+    font-weight: 500;
+}
