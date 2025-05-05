@@ -1,0 +1,39 @@
+{
+  "name": "svin-chat",
+  "version": "1.0.0",
+  "description": "Coolest chat in the world😎",
+  "main": "src/index.js",
+  "scripts": {
+    "start": "node src/index.js",
+    "dev": "nodemon src/index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gugdun/svin-chat.git"
+  },
+  "keywords": [
+    "node",
+    "express",
+    "longpoll",
+    "passport",
+    "chat",
+    "server"
+  ],
+  "author": "gugdun",
+  "license": "SEE LICENSE IN LICENSE",
+  "bugs": {
+    "url": "https://github.com/gugdun/svin-chat/issues"
+  },
+  "homepage": "https://github.com/gugdun/svin-chat#readme",
+  "dependencies": {
+    "dotenv": "^16.5.0",
+    "express": "^5.1.0",
+    "express-longpoll": "^0.0.6",
+    "passport": "^0.7.0",
+    "passport-local": "^1.0.0",
+    "pg-promise": "^11.13.0"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.10"
+  }
+}
