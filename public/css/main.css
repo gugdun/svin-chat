@@ -36,6 +36,13 @@ body {
     margin: auto auto;
 }
 
+.error-container {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    margin: 16px;
+}
+
 .hero-logo {
     display: block;
     box-sizing: border-box;
@@ -52,7 +59,7 @@ body {
     font-weight: 700;
 }
 
-.login-logo {
+.auth-logo {
     display: block;
     box-sizing: border-box;
     margin: 0 auto;
@@ -60,27 +67,11 @@ body {
     height: 50%;
 }
 
-.login-label {
+.auth-label {
     display: block;
     width: 100%;
     text-align: center;
     font-size: 20pt;
-    font-weight: 700;
-}
-
-.register-logo {
-    display: block;
-    box-sizing: border-box;
-    margin: 0 auto;
-    width: 33%;
-    height: 33%;
-}
-
-.register-label {
-    display: block;
-    width: 100%;
-    text-align: center;
-    font-size: 18pt;
     font-weight: 700;
 }
 
@@ -152,12 +143,8 @@ body {
         font-size: 20pt;
     }
 
-    .login-label {
+    .auth-label {
         font-size: 18pt;
-    }
-
-    .register-label {
-        font-size: 16pt;
     }
 
     .button {
@@ -186,12 +173,8 @@ body {
         font-size: 18pt;
     }
 
-    .login-label {
+    .auth-label {
         font-size: 16pt;
-    }
-
-    .register-label {
-        font-size: 14pt;
     }
 
     .button {
@@ -220,12 +203,8 @@ body {
         font-size: 16pt;
     }
 
-    .login-label {
+    .auth-label {
         font-size: 14pt;
-    }
-
-    .register-label {
-        font-size: 12pt;
     }
 
     .button {
