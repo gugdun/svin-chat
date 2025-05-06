@@ -9,55 +9,30 @@ html {
 }
 
 body {
+    display: flex;
+    width: 100%;
+    height: 100vh;
+}
+
+.hs {
     display: block;
     box-sizing: border-box;
     width: 100%;
+    height: 16px;
 }
 
-.hss {
+.vs {
     display: block;
     box-sizing: border-box;
-    width: 100%;
-    height: 4px;
-}
-
-.vss {
-    display: block;
-    width: 4px;
+    width: 16px;
     height: 100%;
 }
 
-.hsm {
-    display: block;
-    box-sizing: border-box;
-    width: 100%;
-    height: 8px;
-}
-
-.vsm {
-    display: block;
-    width: 8px;
-    height: 100%;
-}
-
-.hsl {
-    display: block;
-    box-sizing: border-box;
-    width: 100%;
-    height: 12px;
-}
-
-.vsl {
-    display: block;
-    width: 12px;
-    height: 100%;
-}
-
-.hero-container {
-    display: block;
-    box-sizing: border-box;
+.container {
+    display: flex;
+    flex-direction: column;
     justify-items: stretch;
-    width: 96px;
+    width: 300px;
     margin: auto auto;
 }
 
@@ -65,73 +40,59 @@ body {
     display: block;
     box-sizing: border-box;
     margin: 0 auto;
-    width: 64px;
-    height: 64px;
+    width: 66%;
+    height: 66%;
 }
 
 .hero-label {
     display: block;
     width: 100%;
     text-align: center;
-    font-size: 14pt;
+    font-size: 24pt;
     font-weight: 700;
-}
-
-.login-container {
-    display: block;
-    box-sizing: border-box;
-    width: 96px;
-    margin: auto auto;
 }
 
 .login-logo {
     display: block;
     box-sizing: border-box;
     margin: 0 auto;
-    width: 48px;
-    height: 48px;
+    width: 50%;
+    height: 50%;
 }
 
 .login-label {
     display: block;
     width: 100%;
     text-align: center;
-    font-size: 12pt;
+    font-size: 20pt;
     font-weight: 700;
-}
-
-.register-container {
-    display: block;
-    box-sizing: border-box;
-    width: 96px;
-    margin: auto auto;
 }
 
 .register-logo {
     display: block;
     box-sizing: border-box;
     margin: 0 auto;
-    width: 48px;
-    height: 48px;
+    width: 33%;
+    height: 33%;
 }
 
 .register-label {
     display: block;
     width: 100%;
     text-align: center;
-    font-size: 12pt;
+    font-size: 18pt;
     font-weight: 700;
 }
 
 .button {
     display: block;
     width: 100%;
-    height: 24px;
+    aspect-ratio: 4 / 1;
     border: none;
     border-radius: 4px;
     color: #FFF;
     background-color: #50A0F0;
-    font-size: 8pt;
+    font-size: 16pt;
     font-weight: 700;
 }
 
@@ -155,13 +116,12 @@ body {
 .text-input {
     display: block;
     margin: auto;
-    padding-left: 4px;
-    max-width: 92px;
     width: 100%;
-    height: 20px;
+    aspect-ratio: 4 / 1;
     border: none;
     border-radius: 4px;
     background-color: #FFF;
+    font-size: 16pt;
     font-weight: 700;
 }
 
@@ -175,8 +135,104 @@ body {
     outline-width: 2px;
 }
 
-.input-hint {
-    color: #fff;
-    font-size: 6pt;
-    font-weight: 500;
+@media screen and (max-width: 600px) {
+    .hs {
+        height: 12px;
+    }
+    
+    .vs {
+        width: 12px;
+    }
+    
+    .container {
+        width: 256px;
+    }
+    
+    .hero-label {
+        font-size: 20pt;
+    }
+
+    .login-label {
+        font-size: 18pt;
+    }
+
+    .register-label {
+        font-size: 16pt;
+    }
+
+    .button {
+        font-size: 12pt;
+    }
+
+    .text-input {
+        font-size: 12pt;
+    }
+}
+
+@media screen and (max-width: 400px) {
+    .hs {
+        height: 10px;
+    }
+    
+    .vs {
+        width: 10px;
+    }
+    
+    .container {
+        width: 192px;
+    }
+    
+    .hero-label {
+        font-size: 18pt;
+    }
+
+    .login-label {
+        font-size: 16pt;
+    }
+
+    .register-label {
+        font-size: 14pt;
+    }
+
+    .button {
+        font-size: 10pt;
+    }
+
+    .text-input {
+        font-size: 10pt;
+    }
+}
+
+@media screen and (max-width: 240px) {
+    .hs {
+        height: 8px;
+    }
+    
+    .vs {
+        width: 8px;
+    }
+
+    .container {
+        width: 128px;
+    }
+    
+    .hero-label {
+        font-size: 16pt;
+    }
+
+    .login-label {
+        font-size: 14pt;
+    }
+
+    .register-label {
+        font-size: 12pt;
+    }
+
+    .button {
+        font-size: 8pt;
+    }
+
+    .text-input {
+        font-size: 8pt;
+    }
 }
