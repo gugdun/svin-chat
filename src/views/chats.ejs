@@ -6,6 +6,15 @@
         </a>
     </div>
     <div class="chat-list">
-
+        <% if (empty) { %>
+            <p class="empty-label">No chats</p>
+        <% } %>
+        <% chats.forEach(function(chat) { %>
+            <a href="/chat/<%- chat %>" class="chat-link">
+                <div class="chat-item">
+                    <span class="chat-name"><%- chat %></span>
+                </div>
+            </a>
+        <% }); %>
     </div>
 </div>

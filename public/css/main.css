@@ -139,6 +139,7 @@ body {
     align-items: center;
     width: 100%;
     height: 64px;
+    background-color: #222;
 }
 
 .chat-list {
@@ -155,6 +156,35 @@ body {
     font-weight: 700;
 }
 
+.chat-item {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    width: 100%;
+    height: 48px;
+    border-bottom-color: #222;
+    border-bottom-width: 1px;
+    border-bottom-style: solid;
+}
+
+.chat-link {
+    color: #fff;
+    text-decoration: none;
+}
+
+.chat-name {
+    margin-left: 16px;
+    font-size: 14pt;
+}
+
+.empty-label {
+    width: 100%;
+    margin-top: 16px;
+    text-align: center;
+    font-size: 16pt;
+    font-weight: 500;
+}
+
 .logout {
     display: flex;
     justify-content: center;
@@ -162,7 +192,9 @@ body {
 }
 
 .logout img {
-    width: 66%;
+    width: 32px;
+    height: 32px;
+    margin: 16px;
 }
 
 @media screen and (max-width: 600px) {
@@ -192,6 +224,34 @@ body {
 
     .text-input {
         font-size: 12pt;
+    }
+
+    .chats-header {
+        height: 48px;
+    }
+
+    .chat-title {
+        font-size: 16pt;
+    }
+
+    .chat-item {
+        height: 40px;
+    }
+    
+    .chat-name {
+        margin-left: 12px;
+        font-size: 13pt;
+    }
+    
+    .empty-label {
+        margin-top: 12px;
+        font-size: 14pt;
+    }
+
+    .logout img {
+        width: 26px;
+        height: 26px;
+        margin: 12px;
     }
 }
 
@@ -223,6 +283,34 @@ body {
     .text-input {
         font-size: 10pt;
     }
+
+    .chats-header {
+        height: 44px;
+    }
+
+    .chat-title {
+        font-size: 14pt;
+    }
+
+    .chat-item {
+        height: 36px;
+    }
+    
+    .chat-name {
+        margin-left: 10px;
+        font-size: 12pt;
+    }
+    
+    .empty-label {
+        margin-top: 10px;
+        font-size: 12pt;
+    }
+
+    .logout img {
+        width: 23px;
+        height: 23px;
+        margin: 11px;
+    }
 }
 
 @media screen and (max-width: 240px) {
@@ -252,5 +340,33 @@ body {
 
     .text-input {
         font-size: 8pt;
+    }
+
+    .chats-header {
+        height: 40px;
+    }
+
+    .chat-title {
+        font-size: 13pt;
+    }
+
+    .chat-item {
+        height: 32px;
+    }
+    
+    .chat-name {
+        margin-left: 8px;
+        font-size: 11pt;
+    }
+    
+    .empty-label {
+        margin-top: 8px;
+        font-size: 11pt;
+    }
+
+    .logout img {
+        width: 20px;
+        height: 20px;
+        margin: 10px;
     }
 }
