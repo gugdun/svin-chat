@@ -11,9 +11,15 @@ const views = path.join(__dirname, "..", "views");
 const router = express.Router();
 
 router.get("/", async (req, res) => {
-    res.render("layout", {
-        child: await ejs.renderFile(path.join(views, "home.ejs"))
-    });
+    if (req.user) {
+        res.render("layout", {
+            child: await ejs.renderFile(path.join(views, "chats.ejs"))
+        });
+    } else {
+        res.render("layout", {
+            child: await ejs.renderFile(path.join(views, "home.ejs"))
+        });
+    }
 });
 
 router.get("/login", async (req, res) => {

@@ -126,6 +126,45 @@ body {
     outline-width: 2px;
 }
 
+.chats-container {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+}
+
+.chats-header {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    width: 100%;
+    height: 64px;
+}
+
+.chat-list {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+    overflow-y: scroll;
+}
+
+.chat-title {
+    margin: auto;
+    font-size: 18pt;
+    font-weight: 700;
+}
+
+.logout {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.logout img {
+    width: 66%;
+}
+
 @media screen and (max-width: 600px) {
     .hs {
         height: 12px;
