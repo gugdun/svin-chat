@@ -10,7 +10,6 @@ const passport = require("passport");
 const session = require("express-session");
 const pgSession = require("connect-pg-simple")(session);
 
-const db = require("./db");
 const indexRouter = require("./routes/index");
 const authRouter = require("./routes/auth");
 

@@ -1,9 +1,21 @@
 services:
-  web:
-    build: .
+  prod:
+    build:
+      dockerfile: Dockerfile.production
     restart: always
     ports:
       - 8080:5000
+    profiles: [prod]
+
+  dev:
+    build:
+      dockerfile: Dockerfile.development
+    restart: always
+    ports:
+      - 8080:5000
+    volumes:
+      - .:/home/node/app
+    profiles: [dev]
 
   adminer:
     image: adminer
@@ -15,7 +27,10 @@ services:
     image: "postgres:alpine"
     restart: always
     shm_size: 128mb
-    ports:
-      - 5432:5432
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
     environment:
       POSTGRES_PASSWORD: change-me
+
+volumes:
+  postgres_data:
