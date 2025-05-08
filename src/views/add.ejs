@@ -1,0 +1,23 @@
+<div class="chats-container">
+    <div class="chat-header">
+        <a href="/" class="action">
+            <img src="/img/back.png" />
+        </a>
+        <span class="chat-title">Add SvinChat</span>
+    </div>
+    <div class="chat-list">
+        <form method="POST" action="/add" class="add-form">
+            <input type="username" name="username" placeholder="Enter username..." class="text-input" required />
+            <input type="submit" value="Add" class="button" />
+        </form>
+        <% if (notFound) { %>
+            <p class="empty-label">User not found!</p>
+        <% } %>
+        <% if (found) { %>
+            <p class="empty-label">Chat created!</p>
+        <% } %>
+        <% if (exists) { %>
+            <p class="empty-label">Chat already exists!</p>
+        <% } %>
+    </div>
+</div>
