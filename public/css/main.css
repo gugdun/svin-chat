@@ -185,7 +185,7 @@ body {
 
 .empty-label {
     width: 100%;
-    margin: 16px 0px;
+    margin-top: 16px;
     text-align: center;
     font-size: 16pt;
     font-weight: 500;
@@ -237,17 +237,17 @@ body {
     color: #555;
 }
 
-.add-form {
+.input-form {
     display: flex;
     flex-direction: row;
 }
 
-.add-form .text-input {
+.input-form .text-input {
     margin: 16px 0px 16px 16px;
     height: 56px;
 }
 
-.add-form .button {
+.input-form .button {
     margin: 16px;
     width: 84px;
     height: 56px;
@@ -377,12 +377,12 @@ body {
         font-size: 12pt;
     }
 
-    .add-form .text-input {
+    .input-form .text-input {
         margin: 12px 0px 12px 12px;
         height: 48px;
     }
     
-    .add-form .button {
+    .input-form .button {
         margin: 12px;
         width: 72px;
         height: 48px;
@@ -480,12 +480,12 @@ body {
         font-size: 11pt;
     }
 
-    .add-form .text-input {
+    .input-form .text-input {
         margin: 10px 0px 10px 10px;
         height: 40px;
     }
     
-    .add-form .button {
+    .input-form .button {
         margin: 10px;
         width: 60px;
         height: 40px;
@@ -583,12 +583,12 @@ body {
         font-size: 10pt;
     }
 
-    .add-form .text-input {
+    .input-form .text-input {
         margin: 8px 0px 8px 8px;
         height: 32px;
     }
     
-    .add-form .button {
+    .input-form .button {
         margin: 8px;
         width: 48px;
         height: 32px;

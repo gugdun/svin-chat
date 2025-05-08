@@ -43,4 +43,25 @@ router.get("/chat/:chat_id", async (req, res) => {
     }
 });
 
+router.post("/chat/:chat_id", async (req, res) => {
+    if (req.user) {
+        try {
+            const user = await db.one("SELECT id FROM users WHERE username = $1", [ req.params.chat_id ]);
+            const chat = await db.one("SELECT id FROM chats WHERE (user1_id = $1 AND user2_id = $2) OR (user1_id = $2 AND user2_id = $1)", [ req.user.id, user?.id ]);
+            await db.none("INSERT INTO messages (chat_id, user_id, text, timestamp) VALUES ($1, $2, $3, $4)", [
+                chat?.id,
+                req.user.id,
+                req.body.text,
+                new Date().toISOString()
+            ]);
+        } catch (err) {
+            console.log(err);
+        } finally {
+            res.redirect(`/chat/${req.params.chat_id}`);
+        }
+    } else {
+        res.redirect("/login");
+    }
+});
+
 module.exports = router;

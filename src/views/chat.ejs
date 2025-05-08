@@ -17,6 +17,10 @@
             </div>
         <% }); %>
     </div>
+    <form method="POST" action="/chat/<%- title %>" class="input-form">
+        <input type="text" name="text" placeholder="Enter message..." class="text-input" required />
+        <input type="submit" value="Send" class="button" />
+    </form>
 </div>
 <script>
     var timestamps = document.getElementsByClassName("message-datetime")
