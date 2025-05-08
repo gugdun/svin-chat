@@ -12,6 +12,7 @@ const pgSession = require("connect-pg-simple")(session);
 
 const indexRouter = require("./routes/index");
 const authRouter = require("./routes/auth");
+const chatRouter = require("./routes/chat");
 
 const PORT = process.env.PORT || 5000;
 
@@ -40,6 +41,7 @@ longpoll.create("/poll");
 
 app.use(indexRouter);
 app.use(authRouter);
+app.use(chatRouter);
 
 app.use(function (req, res, next) {
     next(createError(404));
