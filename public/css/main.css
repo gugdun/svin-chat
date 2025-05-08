@@ -254,7 +254,7 @@ body {
 }
 
 .add-button {
-    display: block;
+    display: flex;
     box-sizing: border-box;
     position: absolute;
     width: 64px;
@@ -280,8 +280,25 @@ body {
 }
 
 .add-button img {
+    width: 66%;
+    height: 66%;
+    margin: auto;
+}
+
+.back-button {
+    display: flex;
+    box-sizing: border-box;
+    position: absolute;
     width: 64px;
     height: 64px;
+    left: 16px;
+    top: 16px;
+}
+
+.back-button img {
+    width: 66%;
+    height: 66%;
+    margin: auto;
 }
 
 @media screen and (max-width: 600px) {
@@ -378,10 +395,12 @@ body {
         right: 12px;
         border-radius: 12px;
     }
-    
-    .add-button img {
-        width: 48px;
-        height: 48px;
+
+    .back-button {
+        width: 56px;
+        height: 56px;
+        left: 12px;
+        top: 12px;
     }
 }
 
@@ -479,10 +498,12 @@ body {
         right: 10px;
         border-radius: 10px;
     }
-    
-    .add-button img {
-        width: 40px;
-        height: 40px;
+
+    .back-button {
+        width: 48px;
+        height: 48px;
+        left: 10px;
+        top: 10px;
     }
 }
 
@@ -580,9 +601,11 @@ body {
         right: 8px;
         border-radius: 8px;
     }
-    
-    .add-button img {
-        width: 32px;
-        height: 32px;
+
+    .back-button {
+        width: 40px;
+        height: 40px;
+        left: 8px;
+        top: 8px;
     }
 }
