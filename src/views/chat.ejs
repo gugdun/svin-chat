@@ -1,0 +1,27 @@
+<div class="chats-container">
+    <div class="chat-header">
+        <a href="/" class="action">
+            <img src="/img/back.png" />
+        </a>
+        <span class="chat-title"><%- title %></span>
+    </div>
+    <div class="message-list">
+        <% if (empty) { %>
+            <p class="empty-label">No messages</p>
+        <% } %>
+        <% messages.forEach(function(message) { %>
+            <div class="message">
+                <span class="message-username"><%- message.username %></span>
+                <span class="message-text"><%- message.text %></span>
+                <span class="message-datetime"><%- message.datetime %></span>
+            </div>
+        <% }); %>
+    </div>
+</div>
+<script>
+    var timestamps = document.getElementsByClassName("message-datetime")
+    for (var i = 0; i < timestamps.length; i++) {
+        var timestamp = timestamps[i];
+        timestamp.innerText = new Date(timestamp.innerText).toLocaleString()
+    }
+</script>

@@ -11,7 +11,7 @@ html {
 body {
     display: flex;
     width: 100%;
-    height: 100vh;
+    height: 100dvh;
 }
 
 .hs {
@@ -106,6 +106,8 @@ body {
 
 .text-input {
     display: block;
+    box-sizing: border-box;
+    padding-left: 8px;
     margin: auto;
     width: 100%;
     aspect-ratio: 4 / 1;
@@ -133,7 +135,7 @@ body {
     height: 100%;
 }
 
-.chats-header {
+.chat-header {
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -147,13 +149,17 @@ body {
     flex-direction: column;
     width: 100%;
     height: 100%;
-    overflow-y: scroll;
+    overflow-y: auto;
 }
 
 .chat-title {
-    margin: auto;
+    margin-right: auto;
     font-size: 18pt;
     font-weight: 700;
+}
+
+.chat-title:first-child {
+    margin-left: 16px;
 }
 
 .chat-item {
@@ -179,22 +185,55 @@ body {
 
 .empty-label {
     width: 100%;
-    margin-top: 16px;
+    margin: 16px 0px;
     text-align: center;
     font-size: 16pt;
     font-weight: 500;
 }
 
-.logout {
+.action {
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
-.logout img {
+.action img {
     width: 32px;
     height: 32px;
-    margin: 16px;
+    margin: 0px 16px;
+}
+
+.message-list {
+    display: flex;
+    flex-direction: column-reverse;
+    width: 100%;
+    height: 100%;
+}
+
+.message {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.message-username {
+    margin: 0px 16px 10px 16px;
+    font-size: 14pt;
+    font-weight: 700;
+}
+
+.message-text {
+    margin: 0px 16px 8px 16px;
+    font-size: 16pt;
+    font-weight: 500;
+    color: #eee;
+}
+
+.message-datetime {
+    margin: 0px 16px 16px 16px;
+    font-size: 14pt;
+    font-weight: 500;
+    color: #555;
 }
 
 @media screen and (max-width: 600px) {
@@ -226,12 +265,16 @@ body {
         font-size: 12pt;
     }
 
-    .chats-header {
+    .chat-header {
         height: 48px;
     }
 
     .chat-title {
         font-size: 16pt;
+    }
+
+    .chat-title:first-child {
+        margin-left: 12px;
     }
 
     .chat-item {
@@ -248,10 +291,25 @@ body {
         font-size: 14pt;
     }
 
-    .logout img {
+    .action img {
         width: 26px;
         height: 26px;
-        margin: 12px;
+        margin: 0px 12px;
+    }
+
+    .message-username {
+        margin: 0px 14px 8px 14px;
+        font-size: 12pt;
+    }
+    
+    .message-text {
+        margin: 0px 14px 6px 14px;
+        font-size: 14pt;
+    }
+    
+    .message-datetime {
+        margin: 0px 14px 14px 14px;
+        font-size: 12pt;
     }
 }
 
@@ -284,12 +342,16 @@ body {
         font-size: 10pt;
     }
 
-    .chats-header {
+    .chat-header {
         height: 44px;
     }
 
     .chat-title {
         font-size: 14pt;
+    }
+
+    .chat-title:first-child {
+        margin-left: 10px;
     }
 
     .chat-item {
@@ -306,10 +368,25 @@ body {
         font-size: 12pt;
     }
 
-    .logout img {
+    .action img {
         width: 23px;
         height: 23px;
-        margin: 11px;
+        margin: 0px 11px;
+    }
+
+    .message-username {
+        margin: 0px 12px 6px 12px;
+        font-size: 11pt;
+    }
+    
+    .message-text {
+        margin: 0px 12px 4px 12px;
+        font-size: 13pt;
+    }
+    
+    .message-datetime {
+        margin: 0px 12px 12px 12px;
+        font-size: 11pt;
     }
 }
 
@@ -342,12 +419,16 @@ body {
         font-size: 8pt;
     }
 
-    .chats-header {
+    .chat-header {
         height: 40px;
     }
 
     .chat-title {
         font-size: 13pt;
+    }
+
+    .chat-title:first-child {
+        margin-left: 8px;
     }
 
     .chat-item {
@@ -364,9 +445,24 @@ body {
         font-size: 11pt;
     }
 
-    .logout img {
+    .action img {
         width: 20px;
         height: 20px;
-        margin: 10px;
+        margin: 0px 10px;
+    }
+
+    .message-username {
+        margin: 0px 10px 4px 10px;
+        font-size: 10pt;
+    }
+    
+    .message-text {
+        margin: 0px 10px 2px 10px;
+        font-size: 12pt;
+    }
+    
+    .message-datetime {
+        margin: 0px 10px 10px 10px;
+        font-size: 10pt;
     }
 }
