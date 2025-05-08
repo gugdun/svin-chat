@@ -5,7 +5,7 @@
         </a>
         <span class="chat-title"><%- title %></span>
     </div>
-    <div class="message-list">
+    <div id="message-list" class="message-list">
         <% if (empty) { %>
             <p class="empty-label">No messages</p>
         <% } %>
@@ -17,15 +17,70 @@
             </div>
         <% }); %>
     </div>
-    <form method="POST" action="/chat/<%- title %>" class="input-form">
-        <input type="text" name="text" placeholder="Enter message..." class="text-input" required />
+    <form onsubmit="return onMessageSubmit(event)" class="input-form">
+        <input type="text" id="message-input" name="text" placeholder="Enter message..." class="text-input" required />
         <input type="submit" value="Send" class="button" />
     </form>
 </div>
 <script>
+    var lastTimestamp = new Date().toISOString()
+    var messageList = document.getElementById("message-list")
+    var messageInput = document.getElementById("message-input")
     var timestamps = document.getElementsByClassName("message-datetime")
     for (var i = 0; i < timestamps.length; i++) {
-        var timestamp = timestamps[i];
+        var timestamp = timestamps[i]
         timestamp.innerText = new Date(timestamp.innerText).toLocaleString()
     }
+    function addMessage(message) {
+        var container = document.createElement("div")
+        var nameSpan = document.createElement("span")
+        var textSpan = document.createElement("span")
+        var datetimeSpan = document.createElement("span")
+        container.className = "message"
+        nameSpan.className = "message-username"
+        textSpan.className = "message-text"
+        datetimeSpan.className = "message-datetime"
+        nameSpan.innerText = message.username
+        textSpan.innerText = message.text
+        datetimeSpan.innerText = new Date(message.datetime).toLocaleString()
+        container.appendChild(nameSpan)
+        container.appendChild(textSpan)
+        container.appendChild(datetimeSpan)
+        messageList.insertBefore(container, messageList.firstChild)
+        lastTimestamp = message.datetime
+    }
+    function onMessageSubmit(event) {
+        event.preventDefault()
+        var message = {
+            username: "<%- username %>",
+            text: messageInput.value,
+            datetime: new Date().toISOString()
+        }
+        var xhr = new XMLHttpRequest()
+        xhr.open("POST", "/chat/<%- title %>")
+        xhr.setRequestHeader("Content-Type", "application/json;charset=UTF-8")
+        xhr.send(JSON.stringify(message))
+        messageInput.value = ""
+        return false
+    }
+    function pollMessages() {
+        var data = { timestamp: lastTimestamp }
+        var xhr = new XMLHttpRequest()
+        xhr.timeout = 30000
+        xhr.open("POST", "/poll/<%- chatId %>")
+        xhr.setRequestHeader("Content-Type", "application/json;charset=UTF-8")
+        xhr.onload = function () {
+            var response = JSON.parse(xhr.responseText)
+            for (var i = 0; i < response["messages"].length; i++) {
+                var message = response["messages"][i]
+                addMessage(message)
+            }
+            pollMessages()
+        }
+        xhr.ontimeout = function (e) {
+            pollMessages()
+        }
+        xhr.send(JSON.stringify(data))
+    }
+    pollMessages()
 </script>

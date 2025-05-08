@@ -14,6 +14,7 @@ const indexRouter = require("./routes/index");
 const authRouter = require("./routes/auth");
 const chatRouter = require("./routes/chat");
 const addRouter = require("./routes/add");
+const longpollRouter = require("./routes/longpoll");
 
 const PORT = process.env.PORT || 5000;
 
@@ -37,13 +38,11 @@ app.use(session({
 }));
 app.use(passport.authenticate("session"));
 
-const longpoll = require("express-longpoll")(app);
-longpoll.create("/poll");
-
 app.use(indexRouter);
 app.use(authRouter);
 app.use(chatRouter);
 app.use(addRouter);
+app.use(longpollRouter);
 
 app.use(function (req, res, next) {
     next(createError(404));
@@ -59,7 +58,3 @@ app.use(function (err, req, res, next) {
 app.listen(PORT, function () {
     console.log(`Listening on port ${PORT}`);
 });
-
-setInterval(function () {
-    longpoll.publish("/poll", { message: "Test" });
-}, 5000);

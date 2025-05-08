@@ -22,6 +22,7 @@ router.get("/", async (req, res) => {
                 })
             });
         } catch (err) {
+            console.log(err);
             res.render("layout", {
                 child: await ejs.renderFile(path.join(views, "chats.ejs"), {
                     empty: true,

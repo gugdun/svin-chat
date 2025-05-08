@@ -46,7 +46,10 @@ router.post("/login", passport.authenticate("local", {
 router.post("/register", (req, res, next) => {
     var salt = crypto.randomBytes(16);
     crypto.pbkdf2(req.body.password, salt, 310000, 32, "sha256", (err, hashedPassword) => {
-        if (err) { return next(err); }
+        if (err) {
+            console.log(err);
+            return next(err);
+        }
         db.one("INSERT INTO users (username, hashed_password, salt) VALUES ($1, $2, $3) RETURNING id, username", [
             req.body.username,
             hashedPassword,
@@ -56,7 +59,10 @@ router.post("/register", (req, res, next) => {
                 id: data.id,
                 username: data.username
             }, (err) => {
-                if (err) { return next(err); }
+                if (err) {
+                    console.log(err);
+                    return next(err);
+                }
                 res.redirect("/");
             });
         }).catch(err => res.redirect("/register"));
@@ -65,7 +71,10 @@ router.post("/register", (req, res, next) => {
 
 router.get("/logout", function (req, res, next) {
     req.logout(function (err) {
-        if (err) { return next(err); }
+        if (err) {
+            console.log(err);
+            return next(err);
+        }
         res.redirect("/");
     });
 });

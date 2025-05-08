@@ -17,7 +17,9 @@ router.get("/chat/:chat_id", async (req, res) => {
             const messages = await db.any("SELECT username, attachment_id, text, timestamp FROM messages JOIN users ON users.id = user_id WHERE chat_id = $1 ORDER BY messages.timestamp DESC", [ chat?.id ]);
             res.render("layout", {
                 child: await ejs.renderFile(path.join(views, "chat.ejs"), {
+                    username: req.user.username,
                     title: req.params.chat_id,
+                    chatId: chat?.id,
                     empty: messages.length < 1,
                     messages: messages.map((message) => {
                         return {
@@ -48,16 +50,17 @@ router.post("/chat/:chat_id", async (req, res) => {
         try {
             const user = await db.one("SELECT id FROM users WHERE username = $1", [ req.params.chat_id ]);
             const chat = await db.one("SELECT id FROM chats WHERE (user1_id = $1 AND user2_id = $2) OR (user1_id = $2 AND user2_id = $1)", [ req.user.id, user?.id ]);
+            const datetime = new Date().toISOString();
             await db.none("INSERT INTO messages (chat_id, user_id, text, timestamp) VALUES ($1, $2, $3, $4)", [
                 chat?.id,
                 req.user.id,
                 req.body.text,
-                new Date().toISOString()
+                datetime
             ]);
+            res.json({ success: true });
         } catch (err) {
             console.log(err);
-        } finally {
-            res.redirect(`/chat/${req.params.chat_id}`);
+            res.json({ success: false });
         }
     } else {
         res.redirect("/login");
