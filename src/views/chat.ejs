@@ -17,17 +17,20 @@
             </div>
         <% }); %>
         <% if (hasMoreMessages) { %>
-            <button id="load-more" class="button">Load More</button>
+            <form id="load-more" onsubmit="return onLoadMoreClick(event)">
+                <input type="submit" value="Load More" class="load-more" />
+            </form>
         <% } %>
     </div>
     <form onsubmit="return onMessageSubmit(event)" class="input-form">
-        <input type="text" id="message-input" name="text" placeholder="Enter message..." class="text-input" required />
+        <input type="text" id="message-input" name="text" placeholder="Enter message..." class="text-input" autocomplete="off" required />
         <input type="submit" value="Send" class="button" />
     </form>
 </div>
 <script>
     var firstTimestamp = new Date("<%- firstTimestamp %>").toISOString();
     var lastTimestamp = new Date().toISOString()
+    var loadMoreForm = document.getElementById("load-more")
     var messageList = document.getElementById("message-list")
     var messageInput = document.getElementById("message-input")
     var timestamps = document.getElementsByClassName("message-datetime")
@@ -52,6 +55,7 @@
         container.appendChild(datetimeSpan)
         lastTimestamp = message.datetime
         messageList.insertBefore(container, before)
+        container.scrollIntoView(false);
     }
     function onMessageSubmit(event) {
         event.preventDefault()
@@ -86,7 +90,8 @@
         }
         xhr.send(JSON.stringify(data))
     }
-    function loadMoreMessages() {
+    function onLoadMoreClick(event) {
+        event.preventDefault()
         var data = { timestamp: firstTimestamp }
         var xhr = new XMLHttpRequest()
         xhr.open("POST", "/chat/<%- title %>/messages")
@@ -100,14 +105,14 @@
                 }
                 firstTimestamp = response.timestamp
                 if (!response.hasMoreMessages) {
-                    document.getElementById("load-more").style.display = "none"
+                    loadMoreForm.style.display = "none"
                 }
             } else {
-                document.getElementById("load-more").style.display = "none"
+                loadMoreForm.style.display = "none"
             }
         }
         xhr.send(JSON.stringify(data))
+        return false
     }
-    document.getElementById("load-more")?.addEventListener("click", loadMoreMessages)
     pollMessages()
 </script>
