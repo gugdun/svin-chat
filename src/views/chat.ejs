@@ -28,6 +28,7 @@
     </form>
 </div>
 <script>
+    var pollRequest = null
     var firstTimestamp = new Date("<%- firstTimestamp %>").toISOString();
     var lastTimestamp = new Date().toISOString()
     var loadMoreForm = document.getElementById("load-more")
@@ -74,12 +75,12 @@
     }
     function pollMessages() {
         var data = { timestamp: lastTimestamp }
-        var xhr = new XMLHttpRequest()
-        xhr.timeout = 30000
-        xhr.open("POST", "/poll/<%- chatId %>")
-        xhr.setRequestHeader("Content-Type", "application/json;charset=UTF-8")
-        xhr.onload = function () {
-            var response = JSON.parse(xhr.responseText)
+        pollRequest = new XMLHttpRequest()
+        pollRequest.timeout = 30000
+        pollRequest.open("POST", "/poll/<%- chatId %>")
+        pollRequest.setRequestHeader("Content-Type", "application/json;charset=UTF-8")
+        pollRequest.onload = function () {
+            var response = JSON.parse(pollRequest.responseText)
             for (var i = 0; i < response["messages"].length; i++) {
                 var message = response["messages"][i]
                 lastTimestamp = message.datetime
@@ -87,19 +88,19 @@
             }
             pollMessages()
         }
-        xhr.ontimeout = function (e) {
+        pollRequest.ontimeout = function (e) {
             pollMessages()
         }
-        xhr.send(JSON.stringify(data))
+        pollRequest.send(JSON.stringify(data))
     }
     function onLoadMoreClick(event) {
         event.preventDefault()
         var data = { timestamp: firstTimestamp }
-        var xhr = new XMLHttpRequest()
-        xhr.open("POST", "/chat/<%- title %>/messages")
-        xhr.setRequestHeader("Content-Type", "application/json;charset=UTF-8")
-        xhr.onload = function () {
-            var response = JSON.parse(xhr.responseText)
+        var loadMoreRequest = new XMLHttpRequest()
+        loadMoreRequest.open("POST", "/chat/<%- title %>/messages")
+        loadMoreRequest.setRequestHeader("Content-Type", "application/json;charset=UTF-8")
+        loadMoreRequest.onload = function () {
+            var response = JSON.parse(loadMoreRequest.responseText)
             if (response.messages.length > 0) {
                 for (var i = 0; i < response["messages"].length; i++) {
                     var message = response["messages"][i]
@@ -114,8 +115,13 @@
                 loadMoreForm.style.display = "none"
             }
         }
-        xhr.send(JSON.stringify(data))
+        loadMoreRequest.send(JSON.stringify(data))
         return false
     }
-    pollMessages()
+    window.addEventListener("pageshow", function (e) {
+        pollMessages()
+    })
+    window.addEventListener("pagehide", function (e) {
+        pollRequest.abort()
+    })
 </script>
