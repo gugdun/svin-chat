@@ -38,7 +38,7 @@
         var timestamp = timestamps[i]
         timestamp.innerText = new Date(timestamp.innerText).toLocaleString()
     }
-    function addMessage(message, before) {
+    function addMessage(message, target) {
         var container = document.createElement("div")
         var nameSpan = document.createElement("span")
         var textSpan = document.createElement("span")
@@ -53,9 +53,9 @@
         container.appendChild(nameSpan)
         container.appendChild(textSpan)
         container.appendChild(datetimeSpan)
-        lastTimestamp = message.datetime
-        messageList.insertBefore(container, before)
-        container.scrollIntoView(false);
+        messageList.insertBefore(container, target)
+        container.scrollIntoView(false)
+        messageInput.scrollIntoView(false)
     }
     function onMessageSubmit(event) {
         event.preventDefault()
@@ -82,6 +82,7 @@
             var response = JSON.parse(xhr.responseText)
             for (var i = 0; i < response["messages"].length; i++) {
                 var message = response["messages"][i]
+                lastTimestamp = message.datetime
                 addMessage(message, messageList.firstChild)
             }
             pollMessages()
@@ -105,6 +106,7 @@
                     addMessage(message, messageList.lastChild)
                 }
                 firstTimestamp = response.timestamp
+                messageList.insertBefore(loadMoreForm, messageList.lastChild)
                 if (!response.hasMoreMessages) {
                     loadMoreForm.style.display = "none"
                 }
