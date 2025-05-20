@@ -4,7 +4,10 @@ services:
       dockerfile: Dockerfile.production
     restart: always
     ports:
-      - 8080:5000
+      - 3000:3000
+    depends_on:
+      postgres:
+        condition: service_started
     profiles: [prod]
 
   dev:
@@ -12,16 +15,22 @@ services:
       dockerfile: Dockerfile.development
     restart: always
     ports:
-      - 8080:5000
+      - 3000:3000
     volumes:
       - .:/home/node/app
+    depends_on:
+      postgres:
+        condition: service_started
     profiles: [dev]
 
   adminer:
     image: adminer
     restart: always
     ports:
-      - 8081:8080
+      - 5000:8080
+    depends_on:
+      postgres:
+        condition: service_started
 
   postgres:
     image: "postgres:alpine"

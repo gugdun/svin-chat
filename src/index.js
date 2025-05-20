@@ -16,7 +16,7 @@ const chatRouter = require("./routes/chat");
 const addRouter = require("./routes/add");
 const longpollRouter = require("./routes/longpoll");
 
-const PORT = process.env.PORT || 5000;
+const PORT = process.env.PORT || 3000;
 
 const app = express();
 app.set("view engine", "ejs");

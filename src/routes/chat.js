@@ -5,6 +5,7 @@ const path = require("path");
 const express = require("express");
 const ejs = require("ejs");
 const db = require("../db");
+const { encrypt, decrypt } = require("../util/crypto");
 
 const views = path.join(__dirname, "..", "views");
 const router = express.Router();
@@ -25,7 +26,7 @@ router.get("/chat/:chat_id", async (req, res) => {
                     messages: messages.map((message) => {
                         return {
                             username: message.username,
-                            text: message.text,
+                            text: decrypt(message.text),
                             datetime: message.timestamp
                         }
                     }),
@@ -59,7 +60,7 @@ router.post("/chat/:chat_id", async (req, res) => {
             await db.none("INSERT INTO messages (chat_id, user_id, text, timestamp) VALUES ($1, $2, $3, $4)", [
                 chat?.id,
                 req.user.id,
-                req.body.text,
+                encrypt(req.body.text),
                 datetime
             ]);
             res.json({ success: true });
@@ -84,7 +85,7 @@ router.post("/chat/:chat_id/messages", async (req, res) => {
                 messages: messages.map((message) => {
                     return {
                         username: message.username,
-                        text: message.text,
+                        text: decrypt(message.text),
                         datetime: message.timestamp
                     }
                 }),

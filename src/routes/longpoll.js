@@ -3,6 +3,7 @@
 
 const express = require("express");
 const db = require("../db");
+const { decrypt } = require("../util/crypto");
 
 const router = express.Router();
 
@@ -20,7 +21,7 @@ router.post("/poll/:id", async (req, res) => {
                         messages: messages.map((message) => {
                             return {
                                 username: message.username,
-                                text: message.text,
+                                text: decrypt(message.text),
                                 datetime: message.timestamp
                             }
                         })
