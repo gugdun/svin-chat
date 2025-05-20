@@ -19,6 +19,7 @@ const longpollRouter = require("./routes/longpoll");
 const PORT = process.env.PORT || 3000;
 
 const app = express();
+app.set("trust proxy", 1);
 app.set("view engine", "ejs");
 app.set("views", path.join(__dirname, "views"));
 
@@ -34,7 +35,14 @@ app.use(session({
         tableName: "sessions",
         conString: process.env.POSTGRES_CONNECTION,
         createTableIfMissing: true
-    })
+    }),
+    cookie: {
+        path: "/",
+        secure: "auto",
+        sameSite: "strict",
+        httpOnly: true,
+        maxAge: Number(process.env.COOKIE_MAX_AGE)
+    }
 }));
 app.use(passport.authenticate("session"));
 
