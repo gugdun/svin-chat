@@ -119,6 +119,7 @@
         return false
     }
     window.addEventListener("pageshow", function (e) {
+        messageList.firstElementChild.scrollIntoView(false)
         pollMessages()
     })
     window.addEventListener("pagehide", function (e) {
