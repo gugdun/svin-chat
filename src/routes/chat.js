@@ -5,6 +5,7 @@ const path = require("path");
 const express = require("express");
 const ejs = require("ejs");
 const db = require("../db");
+const package = require("../../package.json");
 const { encrypt, decrypt } = require("../util/crypto");
 
 const views = path.join(__dirname, "..", "views");
@@ -19,6 +20,7 @@ router.get("/chat/:chat_id", async (req, res) => {
             const moreMessages = await db.any("SELECT 1 FROM messages WHERE chat_id = $1 AND timestamp < $2", [ chat?.id, messages[messages.length - 1]?.timestamp ]);
             res.render("layout", {
                 child: await ejs.renderFile(path.join(views, "chat.ejs"), {
+                    version: package.version,
                     username: req.user.username,
                     title: req.params.chat_id,
                     chatId: chat?.id,
@@ -38,7 +40,10 @@ router.get("/chat/:chat_id", async (req, res) => {
             console.log(err);
             res.render("layout", {
                 child: await ejs.renderFile(path.join(views, "chat.ejs"), {
+                    version: package.version,
+                    username: null,
                     title: req.params.chat_id,
+                    chatId: null,
                     empty: true,
                     messages: [],
                     hasMoreMessages: false,

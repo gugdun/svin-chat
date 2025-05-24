@@ -1,7 +1,7 @@
 {
   "name": "svin-chat",
   "version": "1.0.0",
-  "description": "Coolest chat in the world😎",
+  "description": "Coolest chat in the world 😎",
   "main": "src/index.js",
   "scripts": {
     "start": "node src/index.js",

@@ -10,9 +10,15 @@
             <p class="empty-label">No messages</p>
         <% } %>
         <% messages.forEach(function(message) { %>
-            <div class="message">
-                <span class="message-username"><%- message.username %></span>
-                <span class="message-text"><%- message.text %></span>
+            <% if (message.username === username) { %>
+            <div class="message align-end">
+                <span class="message-text user-message">
+            <% } else { %>
+            <div class="message align-start">
+                <span class="message-text friend-message">
+            <% } %>
+                    <%- message.text %>
+                </span>
                 <span class="message-datetime"><%- message.datetime %></span>
             </div>
         <% }); %>
@@ -26,6 +32,7 @@
         <input type="text" id="message-input" name="text" placeholder="Enter message..." class="text-input" autocomplete="off" required />
         <input type="submit" value="Send" class="button" />
     </form>
+    <span class="version">SvinChat v<%- version %></span>
 </div>
 <script>
     var pollRequest = null
@@ -41,17 +48,18 @@
     }
     function addMessage(message, target) {
         var container = document.createElement("div")
-        var nameSpan = document.createElement("span")
         var textSpan = document.createElement("span")
         var datetimeSpan = document.createElement("span")
-        container.className = "message"
-        nameSpan.className = "message-username"
-        textSpan.className = "message-text"
+        if (message.username === "<%- username %>") {
+            container.className = "message align-end"
+            textSpan.className = "message-text user-message"
+        } else {
+            container.className = "message align-start"
+            textSpan.className = "message-text friend-message"
+        }
         datetimeSpan.className = "message-datetime"
-        nameSpan.innerText = message.username
         textSpan.innerText = message.text
         datetimeSpan.innerText = new Date(message.datetime).toLocaleString()
-        container.appendChild(nameSpan)
         container.appendChild(textSpan)
         container.appendChild(datetimeSpan)
         messageList.insertBefore(container, target)
