@@ -221,6 +221,7 @@ body {
     display: flex;
     flex-direction: column;
     width: 100%;
+    margin-top: 8px;
 }
 
 .align-start {
@@ -229,10 +230,6 @@ body {
 
 .align-end {
     align-items: end;
-}
-
-.message:last-child {
-    margin-top: 8px;
 }
 
 .message:first-child .message-datetime {
@@ -265,7 +262,7 @@ body {
 }
 
 .message-datetime {
-    margin: 0px 16px 8px 16px;
+    margin: 0px 16px;
     font-size: 11pt;
     font-weight: 500;
     color: #666;
@@ -346,7 +343,7 @@ body {
     display: block;
     width: 128px;
     height: 40px;
-    margin: 16px auto;
+    margin: 16px auto 0px auto;
     border-style: solid;
     border-width: 1px;
     border-radius: 40px;
@@ -376,7 +373,7 @@ body {
 
 .version {
     margin: 0px 16px 8px 16px;
-    color: #444;
+    color: #666;
     text-align: end;
     font-size: 12pt;
 }
@@ -442,6 +439,10 @@ body {
         margin: 0px 12px;
     }
 
+    .message {
+        margin-top: 6px;
+    }
+
     .message-username {
         margin: 0px 14px 8px 14px;
         font-size: 12pt;
@@ -455,7 +456,7 @@ body {
     }
     
     .message-datetime {
-        margin: 0px 14px 6px 14px;
+        margin: 0px 14px;
         font-size: 10pt;
     }
 
@@ -488,7 +489,7 @@ body {
     .load-more {
         width: 120px;
         height: 32px;
-        margin: 12px auto;
+        margin: 12px auto 4px auto;
         border-radius: 32px;
         font-size: 14pt;
     }
@@ -560,6 +561,10 @@ body {
         margin: 0px 11px;
     }
 
+    .message {
+        margin-top: 4px;
+    }
+
     .message-username {
         margin: 0px 12px 6px 12px;
         font-size: 11pt;
@@ -573,7 +578,7 @@ body {
     }
     
     .message-datetime {
-        margin: 0px 12px 4px 12px;
+        margin: 0px 12px;
         font-size: 9pt;
     }
 
@@ -606,7 +611,7 @@ body {
     .load-more {
         width: 112px;
         height: 28px;
-        margin: 10px auto;
+        margin: 10px auto 4px auto;
         border-radius: 28px;
         font-size: 12pt;
     }
@@ -678,6 +683,10 @@ body {
         margin: 0px 10px;
     }
 
+    .message {
+        margin-top: 4px;
+    }
+
     .message-username {
         margin: 0px 10px 4px 10px;
         font-size: 10pt;
@@ -691,7 +700,7 @@ body {
     }
     
     .message-datetime {
-        margin: 0px 10px 4px 10px;
+        margin: 0px 10px;
         font-size: 8pt;
     }
 
@@ -724,7 +733,7 @@ body {
     .load-more {
         width: 104px;
         height: 24px;
-        margin: 8px auto;
+        margin: 8px auto 4px auto;
         border-radius: 24px;
         font-size: 11pt;
     }
