@@ -64,8 +64,7 @@
         container.appendChild(textSpan)
         container.appendChild(datetimeSpan)
         messageList.insertBefore(container, target)
-        container.scrollIntoView(false)
-        version.scrollIntoView(false)
+        container.scrollIntoView()
     }
     function onMessageSubmit(event) {
         event.preventDefault()
@@ -127,14 +126,11 @@
         loadMoreRequest.send(JSON.stringify(data))
         return false
     }
-    function onMessageInputFocus(e) {
+    messageInput.addEventListener("focus", function (e) {
         setTimeout(function () {
-            version.scrollIntoView(false)
+            version.scrollIntoView()
         }, 500)
-    }
-    messageInput.addEventListener("focus", onMessageInputFocus)
-    messageInput.addEventListener("input", onMessageInputFocus)
-    window.addEventListener("native.showkeyboard", onMessageInputFocus)
+    })
     window.addEventListener("pageshow", function (e) {
         messageList.firstElementChild.scrollIntoView(false)
         pollMessages()
