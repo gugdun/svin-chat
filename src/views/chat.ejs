@@ -32,12 +32,13 @@
         <input type="text" id="message-input" name="text" placeholder="Enter message..." class="text-input" autocomplete="off" required />
         <input type="submit" value="Send" class="button" />
     </form>
-    <span class="version">SvinChat v<%- version %></span>
+    <span id="version" class="version">SvinChat v<%- version %></span>
 </div>
 <script>
     var pollRequest = null
     var firstTimestamp = new Date("<%- firstTimestamp %>").toISOString();
     var lastTimestamp = new Date().toISOString()
+    var version = document.getElementById("version")
     var loadMoreForm = document.getElementById("load-more")
     var messageList = document.getElementById("message-list")
     var messageInput = document.getElementById("message-input")
@@ -64,7 +65,7 @@
         container.appendChild(datetimeSpan)
         messageList.insertBefore(container, target)
         container.scrollIntoView(false)
-        messageInput.scrollIntoView(false)
+        version.scrollIntoView(false)
     }
     function onMessageSubmit(event) {
         event.preventDefault()
@@ -126,6 +127,14 @@
         loadMoreRequest.send(JSON.stringify(data))
         return false
     }
+    function onMessageInputFocus(e) {
+        setTimeout(function () {
+            version.scrollIntoView(false)
+        }, 500)
+    }
+    messageInput.addEventListener("focus", onMessageInputFocus)
+    messageInput.addEventListener("input", onMessageInputFocus)
+    window.addEventListener("native.showkeyboard", onMessageInputFocus)
     window.addEventListener("pageshow", function (e) {
         messageList.firstElementChild.scrollIntoView(false)
         pollMessages()
