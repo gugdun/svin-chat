@@ -85,6 +85,7 @@ body {
     background-color: #50A0F0;
     font-size: 16pt;
     font-weight: 700;
+    cursor: pointer;
 }
 
 .button:focus {
@@ -104,13 +105,16 @@ body {
     background-color: #3585D5;
 }
 
+.auth-input {
+    aspect-ratio: 4 / 1;
+}
+
 .text-input {
     display: block;
     box-sizing: border-box;
     padding-left: 8px;
     margin: auto;
     width: 100%;
-    aspect-ratio: 4 / 1;
     border: none;
     border-radius: 4px;
     background-color: #FFF;
@@ -201,6 +205,7 @@ body {
     justify-content: center;
     align-items: center;
     height: 100%;
+    cursor: pointer;
 }
 
 .action img {
@@ -274,14 +279,19 @@ body {
 }
 
 .input-form .text-input {
-    margin: 16px 0px 8px 16px;
+    margin: 8px 0px;
     height: 56px;
 }
 
+.input-form .text-input:first-child {
+    margin-left: 16px;
+}
+
 .input-form .button {
-    margin: 16px 16px 8px 16px;
+    margin: 8px 16px;
     width: 84px;
     height: 56px;
+    cursor: pointer;
 }
 
 .add-button {
@@ -373,9 +383,30 @@ body {
 
 .version {
     margin: 0px 16px 8px 16px;
-    color: #666;
+    color: #555;
     text-align: end;
     font-size: 12pt;
+}
+
+#message-attachment {
+    display: none;
+}
+
+#attachment-preview {
+    display: flex;
+    align-items: center;
+    padding-left: 16px;
+    border-color: #555;
+    border-style: dashed;
+    border-width: 1px;
+}
+
+#attachment-preview span {
+    width: 100%;
+}
+
+#attachment-preview:has(#attachment-filename:empty) {
+    display: none;
 }
 
 @media screen and (max-width: 600px) {
@@ -461,12 +492,16 @@ body {
     }
 
     .input-form .text-input {
-        margin: 12px 0px 6px 12px;
+        margin: 6px 0px;
         height: 48px;
+    }
+
+    .input-form .text-input:first-child {
+        margin-left: 12px;
     }
     
     .input-form .button {
-        margin: 12px 12px 6px 12px;
+        margin: 6px 12px;
         width: 72px;
         height: 48px;
     }
@@ -497,6 +532,10 @@ body {
     .version {
         margin: 0px 12px 6px 12px;
         font-size: 11pt;
+    }
+
+    #attachment-preview {
+        padding-left: 12px;
     }
 }
 
@@ -583,12 +622,16 @@ body {
     }
 
     .input-form .text-input {
-        margin: 10px 0px 5px 10px;
+        margin: 5px 0px;
         height: 40px;
+    }
+
+    .input-form .text-input:first-child {
+        margin-left: 10px;
     }
     
     .input-form .button {
-        margin: 10px 10px 5px 10px;
+        margin: 5px 10px;
         width: 60px;
         height: 40px;
     }
@@ -619,6 +662,10 @@ body {
     .version {
         margin: 0px 10px 5px 10px;
         font-size: 10pt;
+    }
+
+    #attachment-preview {
+        padding-left: 10px;
     }
 }
 
@@ -705,12 +752,16 @@ body {
     }
 
     .input-form .text-input {
-        margin: 8px 0px 4px 8px;
+        margin: 4px 0px;
         height: 32px;
+    }
+
+    .input-form .text-input:first-child {
+        margin-left: 8px;
     }
     
     .input-form .button {
-        margin: 8px 8px 4px 8px;
+        margin: 4px 8px;
         width: 48px;
         height: 32px;
     }
@@ -741,5 +792,9 @@ body {
     .version {
         margin: 0px 8px 4px 8px;
         font-size: 9pt;
+    }
+
+    #attachment-preview {
+        padding-left: 8px;
     }
 }

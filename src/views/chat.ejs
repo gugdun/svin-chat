@@ -28,7 +28,17 @@
             </form>
         <% } %>
     </div>
+    <div id="attachment-preview">
+        <span id="attachment-filename"></span>
+        <label onclick="onAttachmentClose(event)" id="attachment-close" class="action">
+            <img src="/img/close.png" />
+        </label>
+    </div>
     <form onsubmit="return onMessageSubmit(event)" class="input-form">
+        <label for="message-attachment" class="action">
+            <img src="/img/clip.png" />
+        </label>
+        <input type="file" id="message-attachment" name="attachment" onchange="onAttachmentChange(this)" accept=".jpg, .jpeg, .png" />
         <input type="text" id="message-input" name="text" placeholder="Enter message..." class="text-input" autocomplete="off" required />
         <input type="submit" value="Send" class="button" />
     </form>
@@ -36,12 +46,14 @@
 </div>
 <script>
     var pollRequest = null
-    var firstTimestamp = new Date("<%- firstTimestamp %>").toISOString();
+    var firstTimestamp = new Date("<%- firstTimestamp %>").toISOString()
     var lastTimestamp = new Date().toISOString()
     var version = document.getElementById("version")
     var loadMoreForm = document.getElementById("load-more")
     var messageList = document.getElementById("message-list")
     var messageInput = document.getElementById("message-input")
+    var attachmentInput = document.getElementById("message-attachment")
+    var attachmentName = document.getElementById("attachment-filename")
     var timestamps = document.getElementsByClassName("message-datetime")
     for (var i = 0; i < timestamps.length; i++) {
         var timestamp = timestamps[i]
@@ -125,6 +137,13 @@
         }
         loadMoreRequest.send(JSON.stringify(data))
         return false
+    }
+    function onAttachmentChange(event) {
+        attachmentName.textContent = event.files[0].name
+    }
+    function onAttachmentClose(event) {
+        attachmentName.textContent = ""
+        attachmentInput.value = ""
     }
     messageInput.addEventListener("focus", function (e) {
         setTimeout(function () {
