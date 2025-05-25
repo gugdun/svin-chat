@@ -229,6 +229,18 @@ body {
     margin-top: 8px;
 }
 
+.message a {
+    max-width: 66%;
+    max-height: 50vh;
+    margin: 0px 16px 8px 16px;
+}
+
+.message a img {
+    width: 100%;
+    height: 100%;
+    border-radius: 8px;
+}
+
 .align-start {
     align-items: start;
 }
@@ -401,7 +413,7 @@ body {
     border-width: 1px;
 }
 
-#attachment-preview span {
+#attachment-filename {
     width: 100%;
 }
 
@@ -472,6 +484,14 @@ body {
 
     .message {
         margin-top: 6px;
+    }
+
+    .message a {
+        margin: 0px 14px 7px 14px;
+    }
+
+    .message a img {
+        border-radius: 7px;
     }
 
     .message-username {
@@ -604,6 +624,14 @@ body {
         margin-top: 4px;
     }
 
+    .message a {
+        margin: 0px 12px 6px 12px;
+    }
+
+    .message a img {
+        border-radius: 6px;
+    }
+
     .message-username {
         margin: 0px 12px 6px 12px;
         font-size: 11pt;
@@ -732,6 +760,14 @@ body {
 
     .message {
         margin-top: 4px;
+    }
+
+    .message a {
+        margin: 0px 10px 5px 10px;
+    }
+
+    .message a img {
+        border-radius: 5px;
     }
 
     .message-username {

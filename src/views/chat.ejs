@@ -12,6 +12,11 @@
         <% messages.forEach(function(message) { %>
             <% if (message.username === username) { %>
             <div class="message align-end">
+                <% if (message.attachment) { %>
+                <a href="/attachment/<%- message.attachment %>" target="_blank">
+                    <img src="/thumbnail/<%- message.attachment %>" />
+                </a>
+                <% } %>
                 <span class="message-text user-message">
             <% } else { %>
             <div class="message align-start">
@@ -30,15 +35,15 @@
     </div>
     <div id="attachment-preview">
         <span id="attachment-filename"></span>
-        <label onclick="onAttachmentClose(event)" id="attachment-close" class="action">
+        <span onclick="onAttachmentClose(event)" id="attachment-close" class="action">
             <img src="/img/close.png" />
-        </label>
+        </span>
     </div>
     <form onsubmit="return onMessageSubmit(event)" class="input-form">
         <label for="message-attachment" class="action">
             <img src="/img/clip.png" />
         </label>
-        <input type="file" id="message-attachment" name="attachment" onchange="onAttachmentChange(this)" accept=".jpg, .jpeg, .png" />
+        <input type="file" id="message-attachment" name="attachment" onchange="onAttachmentChange(this)" accept=".jpg, .jpeg, .png, .webp, .avif" />
         <input type="text" id="message-input" name="text" placeholder="Enter message..." class="text-input" autocomplete="off" required />
         <input type="submit" value="Send" class="button" />
     </form>
@@ -73,24 +78,37 @@
         datetimeSpan.className = "message-datetime"
         textSpan.innerText = message.text
         datetimeSpan.innerText = new Date(message.datetime).toLocaleString()
+        if (message.attachment) {
+            var attachmentLink = document.createElement("a")
+            attachmentLink.href = "/attachment/" + message.attachment
+            attachmentLink.target = "_blank"
+            var attachmentImg = document.createElement("img")
+            attachmentImg.src = "/thumbnail/" + message.attachment
+            attachmentLink.appendChild(attachmentImg)
+            container.appendChild(attachmentLink)
+        }
         container.appendChild(textSpan)
         container.appendChild(datetimeSpan)
         messageList.insertBefore(container, target)
-        container.scrollIntoView()
+        setTimeout(function () {
+            container.scrollIntoView()
+        }, 500)
     }
     function onMessageSubmit(event) {
         event.preventDefault()
-        var message = {
-            username: "<%- username %>",
-            text: messageInput.value,
-            datetime: new Date().toISOString()
+        var formData = new FormData()
+        formData.append("username", "<%- username %>")
+        formData.append("text", messageInput.value)
+        formData.append("datetime", new Date().toISOString())
+        if (attachmentInput.files.length > 0) {
+            formData.append("attachment", attachmentInput.files[0])
         }
         var xhr = new XMLHttpRequest()
         xhr.open("POST", "/chat/<%- title %>")
-        xhr.setRequestHeader("Content-Type", "application/json;charset=UTF-8")
-        xhr.send(JSON.stringify(message))
+        xhr.send(formData)
         messageInput.value = ""
         messageInput.focus()
+        onAttachmentClose()
         return false
     }
     function pollMessages() {

@@ -15,6 +15,7 @@ const authRouter = require("./routes/auth");
 const chatRouter = require("./routes/chat");
 const addRouter = require("./routes/add");
 const longpollRouter = require("./routes/longpoll");
+const attachmentRouter = require("./routes/attachment");
 
 const PORT = process.env.PORT || 3000;
 
@@ -51,6 +52,7 @@ app.use(authRouter);
 app.use(chatRouter);
 app.use(addRouter);
 app.use(longpollRouter);
+app.use(attachmentRouter);
 
 app.use(function (req, res, next) {
     next(createError(404));

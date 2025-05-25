@@ -22,7 +22,8 @@ router.post("/poll/:id", async (req, res) => {
                             return {
                                 username: message.username,
                                 text: decrypt(message.text),
-                                datetime: message.timestamp
+                                datetime: message.timestamp,
+                                attachment: message.attachment_id
                             }
                         })
                     });
