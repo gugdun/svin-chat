@@ -9,7 +9,7 @@ const db = require("../db");
 
 passport.use(new LocalStrategy(async (username, password, cb) => {
     db.one("SELECT * FROM users WHERE username = $1 ", [
-        username
+        username.trim()
     ]).then(data => {
         if (!data) { return cb(null, false, { message: "Incorrect username or password." }); }
         crypto.pbkdf2(password, data.salt, 310000, 32, "sha256", (err, hashedPassword) => {
@@ -51,7 +51,7 @@ router.post("/register", (req, res, next) => {
             return next(err);
         }
         db.one("INSERT INTO users (username, hashed_password, salt) VALUES ($1, $2, $3) RETURNING id, username", [
-            req.body.username,
+            req.body.username.trim(),
             hashedPassword,
             salt
         ]).then(data => {
