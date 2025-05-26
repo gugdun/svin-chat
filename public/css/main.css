@@ -421,6 +421,12 @@ body {
     display: none;
 }
 
+.preview {
+    width: 100dvw;
+    height: 100dvh;
+    object-fit: contain;
+}
+
 @media screen and (max-width: 600px) {
     .hs {
         height: 12px;

@@ -12,14 +12,19 @@
         <% messages.forEach(function(message) { %>
             <% if (message.username === username) { %>
             <div class="message align-end">
-                <% if (message.attachment) { %>
-                <a href="/attachment/<%- message.attachment %>" target="_blank">
+                <% if (message.attachment !== null) { %>
+                <a href="/preview/<%- message.attachment %>" target="_blank">
                     <img src="/thumbnail/<%- message.attachment %>" />
                 </a>
                 <% } %>
                 <span class="message-text user-message">
             <% } else { %>
             <div class="message align-start">
+                <% if (message.attachment !== null) { %>
+                <a href="/preview/<%- message.attachment %>" target="_blank">
+                    <img src="/thumbnail/<%- message.attachment %>" />
+                </a>
+                <% } %>
                 <span class="message-text friend-message">
             <% } %>
                     <%- message.text %>

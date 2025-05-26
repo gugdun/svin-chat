@@ -48,4 +48,23 @@ router.get("/attachment/:id", async (req, res) => {
     }
 });
 
+router.get("/preview/:id", async (req, res) => {
+    if (req.user) {
+        try {
+            const message = await db.one("SELECT chat_id FROM messages WHERE attachment_id = $1", [ req.params.id ]);
+            const chat = await db.one("SELECT user1_id, user2_id FROM chats WHERE id = $1", [ message?.chat_id ]);
+            if (chat?.user1_id !== req.user.id && chat?.user2_id !== req.user.id) {
+                throw "User has no access to this attachment!";
+            }
+            const attachment = await db.one("SELECT id FROM attachments WHERE id = $1", [ req.params.id ]);
+            res.render("preview", { attachment: attachment.id });
+        } catch (err) {
+            console.log(err);
+            res.json({ success: false });
+        }
+    } else {
+        res.redirect("/login");
+    }
+});
+
 module.exports = router;

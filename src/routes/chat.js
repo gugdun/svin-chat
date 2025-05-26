@@ -35,7 +35,7 @@ router.get("/chat/:chat_id", async (req, res) => {
                             text: decrypt(message.text),
                             datetime: message.timestamp,
                             attachment: message.attachment_id
-                        }
+                        };
                     }),
                     hasMoreMessages: moreMessages.length > 0,
                     firstTimestamp: messages[messages.length - 1]?.timestamp || new Date().toISOString()
