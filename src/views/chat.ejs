@@ -85,7 +85,7 @@
         datetimeSpan.innerText = new Date(message.datetime).toLocaleString()
         if (message.attachment) {
             var attachmentLink = document.createElement("a")
-            attachmentLink.href = "/attachment/" + message.attachment
+            attachmentLink.href = "/preview/" + message.attachment
             attachmentLink.target = "_blank"
             var attachmentImg = document.createElement("img")
             attachmentImg.src = "/thumbnail/" + message.attachment
