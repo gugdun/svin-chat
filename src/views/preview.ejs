@@ -3,14 +3,15 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="SvinChat attachment preview" />
     <link rel="icon" href="/favicon.ico" type="image/x-icon">
     <link rel="stylesheet" href="/css/main.css">
     <title>Preview</title>
 </head>
 <body>
-    <img src="/attachment/<%- attachment %>" class="preview" />
+    <img src="/attachment/<%- attachment %>" class="preview" alt="Attachment image" />
     <a href="/attachment/<%- attachment %>" download="attachment_<%- attachment %>.jpg" class="add-button">
-        <img src="/img/download.png" />
+        <img src="/img/download.png" alt="Download attachment" />
     </a>
 </body>
 </html>

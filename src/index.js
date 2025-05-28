@@ -27,7 +27,7 @@ app.set("views", path.join(__dirname, "views"));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
-app.use(express.static("public"));
+app.use(express.static("public", { maxAge: "1y" }));
 app.use(session({
     secret: process.env.SESSION_SECRET,
     resave: false,

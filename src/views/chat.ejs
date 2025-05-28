@@ -1,7 +1,7 @@
 <div class="chats-container">
     <div class="chat-header">
         <a href="/" class="action">
-            <img src="/img/back.png" />
+            <img src="/img/back.png" alt="Back to chats" />
         </a>
         <span class="chat-title"><%- title %></span>
     </div>
@@ -14,7 +14,7 @@
             <div class="message align-end">
                 <% if (message.attachment !== null) { %>
                 <a href="/preview/<%- message.attachment %>" target="_blank">
-                    <img src="/thumbnail/<%- message.attachment %>" />
+                    <img src="/thumbnail/<%- message.attachment %>" width="256" height="256" alt="Message attachment" />
                 </a>
                 <% } %>
                 <div class="message-text user-message">
@@ -22,7 +22,7 @@
             <div class="message align-start">
                 <% if (message.attachment !== null) { %>
                 <a href="/preview/<%- message.attachment %>" target="_blank">
-                    <img src="/thumbnail/<%- message.attachment %>" />
+                    <img src="/thumbnail/<%- message.attachment %>" width="256" height="256" alt="Message attachment" />
                 </a>
                 <% } %>
                 <div class="message-text friend-message">
@@ -41,12 +41,12 @@
     <div id="attachment-preview">
         <span id="attachment-filename"></span>
         <span onclick="onAttachmentClose(event)" id="attachment-close" class="action">
-            <img src="/img/close.png" />
+            <img src="/img/close.png" alt="Remove attachment" />
         </span>
     </div>
     <form onsubmit="return onMessageSubmit(event)" class="input-form">
         <label for="message-attachment" class="action">
-            <img src="/img/clip.png" />
+            <img src="/img/clip.png" alt="Add attachment" />
         </label>
         <input type="file" id="message-attachment" name="attachment" onchange="onAttachmentChange(this)" accept=".jpg, .jpeg, .png, .webp, .avif" />
         <input type="text" id="message-input" name="text" placeholder="Enter message..." class="text-input" autocomplete="off" required />

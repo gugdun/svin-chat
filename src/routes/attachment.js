@@ -15,6 +15,7 @@ router.get("/thumbnail/:id", async (req, res) => {
                 throw "User has no access to this thumbnail!";
             }
             const attachment = await db.one("SELECT type, data FROM thumbnails WHERE attachment_id = $1", [ req.params.id ]);
+            res.set("Cache-Control", "max-age=31557600, immutable");
             res.contentType(attachment.type);
             res.write(attachment.data);
             res.end();
@@ -36,6 +37,7 @@ router.get("/attachment/:id", async (req, res) => {
                 throw "User has no access to this attachment!";
             }
             const attachment = await db.one("SELECT type, data FROM attachments WHERE id = $1", [ req.params.id ]);
+            res.set("Cache-Control", "max-age=31557600, immutable");
             res.contentType(attachment.type);
             res.write(attachment.data);
             res.end();
