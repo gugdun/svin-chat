@@ -135,6 +135,9 @@
         pollRequest.ontimeout = function (e) {
             pollMessages()
         }
+        pollRequest.onerror = function (e) {
+            pollMessages()
+        }
         pollRequest.send(JSON.stringify(data))
     }
     function onLoadMoreClick(event) {
