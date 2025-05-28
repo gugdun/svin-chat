@@ -17,7 +17,7 @@
                     <img src="/thumbnail/<%- message.attachment %>" />
                 </a>
                 <% } %>
-                <span class="message-text user-message">
+                <div class="message-text user-message">
             <% } else { %>
             <div class="message align-start">
                 <% if (message.attachment !== null) { %>
@@ -25,10 +25,10 @@
                     <img src="/thumbnail/<%- message.attachment %>" />
                 </a>
                 <% } %>
-                <span class="message-text friend-message">
+                <div class="message-text friend-message">
             <% } %>
                     <%- message.text %>
-                </span>
+                </div>
                 <span class="message-datetime"><%- message.datetime %></span>
             </div>
         <% }); %>
@@ -81,7 +81,7 @@
             textSpan.className = "message-text friend-message"
         }
         datetimeSpan.className = "message-datetime"
-        textSpan.innerText = message.text
+        textSpan.innerHTML = message.text
         datetimeSpan.innerText = new Date(message.datetime).toLocaleString()
         if (message.attachment) {
             var attachmentLink = document.createElement("a")

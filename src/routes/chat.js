@@ -7,6 +7,9 @@ const ejs = require("ejs");
 const db = require("../db");
 const multer = require("multer");
 const sharp = require("sharp");
+const createDOMPurify = require("dompurify");
+const { JSDOM } = require("jsdom");
+const { marked } = require("marked");
 const package = require("../../package.json");
 const { encrypt, decrypt } = require("../util/crypto");
 
@@ -74,11 +77,13 @@ router.post("/chat/:chat_id", upload.single("attachment"), async (req, res) => {
                 const thumbnailBuffer = await sharp(req.file.buffer).autoOrient().resize(256, 256, { fit: "inside" }).jpeg().toBuffer();
                 await db.none("INSERT INTO thumbnails (attachment_id, type, data) VALUES ($1, $2, $3)", [ attachment?.id, "image/jpeg", thumbnailBuffer ]);
             }
+            const window = new JSDOM("").window;
+            const DOMPurify = createDOMPurify(window);
             await db.none("INSERT INTO messages (chat_id, user_id, attachment_id, text, timestamp) VALUES ($1, $2, $3, $4, $5)", [
                 chat?.id,
                 req.user.id,
                 attachment?.id ?? null,
-                encrypt(req.body.text),
+                encrypt(DOMPurify.sanitize(marked.parse(req.body.text))),
                 datetime
             ]);
             res.json({ success: true });
