@@ -64,6 +64,7 @@
     var messageInput = document.getElementById("message-input")
     var attachmentInput = document.getElementById("message-attachment")
     var attachmentName = document.getElementById("attachment-filename")
+    var attachmentPreview = document.getElementById("attachment-preview")
     var timestamps = document.getElementsByClassName("message-datetime")
     for (var i = 0; i < timestamps.length; i++) {
         var timestamp = timestamps[i]
@@ -163,10 +164,12 @@
     }
     function onAttachmentChange(event) {
         attachmentName.textContent = event.files[0].name
+        attachmentPreview.style.display = "flex"
     }
     function onAttachmentClose(event) {
         attachmentName.textContent = ""
         attachmentInput.value = ""
+        attachmentPreview.style.display = "none"
     }
     messageInput.addEventListener("focus", function (e) {
         setTimeout(function () {
