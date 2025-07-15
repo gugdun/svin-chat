@@ -98,7 +98,7 @@
         messageList.insertBefore(container, target)
         setTimeout(function () {
             container.scrollIntoView()
-        }, 500)
+        }, 250)
     }
     function onMessageSubmit(event) {
         event.preventDefault()
@@ -177,7 +177,7 @@
     messageInput.addEventListener("focus", function (e) {
         setTimeout(function () {
             version.scrollIntoView()
-        }, 500)
+        }, 250)
     })
     window.addEventListener("pageshow", function (e) {
         messageList.firstElementChild.scrollIntoView(false)
